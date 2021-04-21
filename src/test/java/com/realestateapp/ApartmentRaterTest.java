@@ -2,6 +2,8 @@ package com.realestateapp;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -11,34 +13,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ApartmentRaterTest {
 
-    @Test
-    void should_ReturnZero_When_ApartmentIsCheap() {
+    @ParameterizedTest
+    @CsvSource(value = {"25.0, 500.0, 0", "60.0, 360000.0, 1", "100.0, 1000000, 2"})
+    void should_ReturnCorrectRating_When_CorrectApartment(Double area, Double price, int rating){
         //given
-        Apartment apartment = new Apartment(200.0, new BigDecimal(5000.0));
+        Apartment apartment = new Apartment(area, new BigDecimal(price));
         //when
         int actual = ApartmentRater.rateApartment(apartment);
         //then
-        assertEquals(0, actual);
-    }
-
-    @Test
-    void should_ReturnOne_When_ApartmentIsModerate() {
-        //given
-        Apartment apartment = new Apartment(100.0, new BigDecimal(700000.0));
-        //when
-        int actual = ApartmentRater.rateApartment(apartment);
-        //then
-        assertEquals(1, actual);
-    }
-
-    @Test
-    void should_ReturnTwo_When_ApartmentIsExpensive() {
-        //given
-        Apartment apartment = new Apartment(1000.0, new BigDecimal(70000000.0));
-        //when
-        int actual = ApartmentRater.rateApartment(apartment);
-        //then
-        assertEquals(2, actual);
+        assertEquals(rating, actual);
     }
 
     @Test
