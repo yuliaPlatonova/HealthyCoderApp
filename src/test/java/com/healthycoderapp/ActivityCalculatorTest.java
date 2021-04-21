@@ -1,3 +1,5 @@
+package com.healthycoderapp;
+
 import com.healthycoderapp.ActivityCalculator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;

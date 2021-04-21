@@ -1,3 +1,5 @@
+package com.healthycoderapp;
+
 import com.healthycoderapp.Coder;
 import com.healthycoderapp.DietPlan;
 import com.healthycoderapp.DietPlanner;
